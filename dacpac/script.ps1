@@ -1,6 +1,6 @@
 ﻿# Prerequisites: DACPAC project and publishing profile
 
-$sqlpackage = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\120\sqlpackage.exe"
+$sqlpackage = "<Location of sqlpackage.exe>"
 
 $dbserver = "<Azure DB Location>"  
 $database = "<name of DB on Server>"
@@ -10,21 +10,19 @@ $database = "<name of DB on Server>"
 $dbProfile = "<Path to your Publish Profile>"
 $mydacpac = "<location of the dacpac>" 
 
-# Publish Command
 
-& $sqlpackage /Action:Publish /tsn:$dbServer /tdn:$database /sf:$mydacpac /pr:$dbProfile /variables:myVariable=1
-
-
-##### EXAMPLE
+##### EXAMPLE 1 - Publish with a publishing profile with Active Directory Integrated/Password
 
 $sqlpackage = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130\sqlpackage.exe"
 
-$dbserver = "eteller.database.windows.net"  
-$database = "testdb"
+$dbserver = "mktestdbserver.database.windows.net"  
+$database = "mktestdb"
 
 # UNC Paths
-$dbProfile = "C:\MariuszStuff\sampleDbPRoject\sampleDbPRoject\sampleDbPRoject.azure.publish.xml"
-$mydacpac = "C:\MariuszStuff\sampleDbPRoject\sampleDbPRoject\bin\Debug\sampleDbPRoject.dacpac" 
+
+$dbProfile = "C:\Users\makolo\git\dacpactestproject\dacpactestproject\dacpactestproject.publish.xml"
+$mydacpac = "C:\Users\makolo\git\dacpactestproject\dacpactestproject\bin\Debug\dacpactestproject.dacpac" 
 
 # Publish Command
+
 & $sqlpackage /Action:Publish /tsn:$dbServer /tdn:$database /sf:$mydacpac /pr:$dbProfile
